@@ -53,7 +53,11 @@ def main():
         # Waiting for creation
         pass
     elif benchmark_name == "Latency":
+        # Come back and add passed arguments once Latency is complete
         decoratedFunction = getUptime(latency)
+    else:
+        print("A valid name was not passed, ending benchmark.")
+        return
 
     p_name, uptime, p_output = decoratedFunction()
 
