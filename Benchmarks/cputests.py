@@ -5,7 +5,7 @@ data = []
 
 while True:
     # Ask user for memory size in GB
-    size = float(input("Enter memory size in GB: "))
+    size = int(input("Enter memory size in GB: "))
 
     try:
         # Allocate memory
