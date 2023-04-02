@@ -7,9 +7,7 @@
 
 import time
 import os
-import argparse
 import math
-from Latency import main as latency
 
 def getUptime(process):
     def timer(*args, **kwargs):
@@ -29,57 +27,31 @@ def getUptime(process):
         if process_output is None:
             process_output = "The monitored process had no printed end output.\n"
 
-        return process_name, uptime, process_output
+        print(f"System (Linux OS) uptime: {os.system('uptime -p')}\n")
+
+        print(f"Process: {process_name}\n")
+
+        # Obtain hours
+        hours = math.floor(uptime / 3600)
+        # Obtain minutes
+        uptime %= 3600
+        minutes = math.floor(uptime / 60)
+        # Obtain seconds
+        seconds = int(uptime % 60)
+
+        print(f"Process uptime:\n")
+        print(f"Hours: {hours}\n")
+        print(f"Minutes: {minutes}\n")
+        print(f"Seconds: {seconds}\n\n")
+
+        print(f"Process output:\n{process_output}\n")
+
+        return
     return timer
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-b", "--benchmark", type=int)
-
-    args = parser.parse_args()
-    benchmark_name = args.benchmark
-    decoratedFunction = None
-
-    if benchmark_name == "CPUUtilization":
-        # Waiting for creation
-        pass
-    elif benchmark_name == "MemoryUsage":
-        # Waiting for creation
-        pass
-    elif benchmark_name == "DiskIO":
-        # Waiting for creation
-        pass
-    elif benchmark_name == "NetworkBandwidth":
-        # Waiting for creation
-        pass
-    elif benchmark_name == "Latency":
-        # Come back and add passed arguments once Latency is complete
-        decoratedFunction = getUptime(latency)
-    else:
-        print("A valid name was not passed, ending benchmark.")
-        return
-
-    p_name, uptime, p_output = decoratedFunction()
-
-    print(f"System (Linux OS) uptime: {os.system('uptime -p')}\n")
-
-    print(f"Process: {p_name}\n")
-
-    # Obtain hours
-    hours = math.floor(uptime / 3600)
-    # Obtain minutes
-    uptime %= 3600
-    minutes = math.floor(uptime / 60)
-    # Obtain seconds
-    seconds = int(uptime % 60)
-
-    print(f"Process uptime:\n")
-    print(f"Hours: {hours}\n")
-    print(f"Minutes: {minutes}\n")
-    print(f"Seconds: {seconds}\n\n")
-
-    print(f"Process output:\n{p_output}\n")
-
+    print("This benchmark is a decorator that can be run on top of another benchmark.\n")
+    print("Therefore, this benchmark cannot be run by itself as there would be nothing to monitor.\n")
     return
 
 if __name__ == "__main__":
