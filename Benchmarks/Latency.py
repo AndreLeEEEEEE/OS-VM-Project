@@ -53,7 +53,7 @@ def main():
         block_size = int(input("Enter an integer for memory block size (MB): "))
         total_size = int(input("Enter an integer for the total size of data to transfer (GB): "))
 
-        if block_size > total_size:
+        if block_size > (total_size * 1024):
             print("Error: Block size cannot be larger than total size, ending program\n")
             return
         if block_size <= 0 or total_size <= 0:
