@@ -2,7 +2,7 @@
 # CSCI 5573 - Operating Systems
 # Final Project Benchmark
 # Criterion: Latency
-# Purpose: 
+# Purpose: Print the latency time for adjustable CPU and memory usage.
 
 import os
 # import argparse
@@ -35,7 +35,7 @@ def main():
         # cpu options
         # --cpu-max-prime = N, upper limit for primes generator [10000]
 
-        num_prime = int(input("Enter an integer for the number of prime numbers to be generated: "))
+        num_prime = int(input("Enter an integer for the upper limit for primes generator: "))
 
         if num_prime <= 0:
             print("The number of primes cannot be negative or zero\n")
@@ -73,8 +73,12 @@ def main():
     terminal_command += " run"
 
     if toggle_uptime == 'y':
-        system_call = getUptime(os.system(terminal_command))
-        system_call()
+        @getUptime
+        def programFunc(command):
+            os.system(command)
+            return
+        
+        programFunc(terminal_command)
     else:
         os.system(terminal_command)
 
