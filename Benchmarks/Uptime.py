@@ -10,26 +10,24 @@ import os
 import math
 
 def getUptime(process):
+    print(process)
     def timer(*args, **kwargs):
         print("Uptime monitor has been called\n")
 
         print("Start monitoring\n")
         start = time.time()
 
-        process_output = process(*args, **kwargs)
+        process(*args, **kwargs)
 
         end = time.time()
         print("\nEnd of monitoring\n")
 
-        process_name = process.__name__
         # uptime unit is seconds
         uptime = end - start
-        if process_output is None:
-            process_output = "The monitored process had no printed end output.\n"
 
-        print(f"System (Linux OS) uptime: {os.system('uptime -p')}\n")
-
-        print(f"Process: {process_name}\n")
+        print("System (Linux OS) uptime:")
+        os.system('uptime -p')
+        print()
 
         # Obtain hours
         hours = math.floor(uptime / 3600)
@@ -39,12 +37,10 @@ def getUptime(process):
         # Obtain seconds
         seconds = int(uptime % 60)
 
-        print(f"Process uptime:\n")
-        print(f"Hours: {hours}\n")
-        print(f"Minutes: {minutes}\n")
-        print(f"Seconds: {seconds}\n\n")
-
-        print(f"Process output:\n{process_output}\n")
+        print(f"Process uptime:")
+        print(f"Hours: {hours}")
+        print(f"Minutes: {minutes}")
+        print(f"Seconds: {seconds}\n")
 
         return
     return timer
