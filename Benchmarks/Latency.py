@@ -5,16 +5,9 @@
 # Purpose: Print the latency time for adjustable CPU and memory usage.
 
 import os
-# import argparse
 from Uptime import getUptime
 
 def main():
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("-t", "--TestMode", type=int)
-
-    # args = parser.parse_args()
-    # test_mode = args.TestMode 
-
     toggle_uptime = input("Record uptime? (y/n) ").lower()
     if toggle_uptime == 'y':
         print("Uptime will be recorded\n")
@@ -47,8 +40,8 @@ def main():
         terminal_command = "sysbench --test=memory"
 
         # memory options
-        # --memory-block-size, size of memory block for test [1K MB]
-        # --memory-total-size, total size of data to transfer [100 GB]
+        # --memory-block-size, size of memory block for test [1K MB/1024 minimum]
+        # --memory-total-size, total size of data to transfer [100 GB minimum]
 
         block_size = int(input("Enter an integer for memory block size (MB): "))
         total_size = int(input("Enter an integer for the total size of data to transfer (GB): "))
@@ -57,28 +50,29 @@ def main():
             print("Error: Block size cannot be larger than total size, ending program\n")
             return
         if block_size <= 0 or total_size <= 0:
-            print("Size cannot be negative or zero, ending program\n")
+            print("Error: Total size cannot be negative or zero, ending program\n")
             return
+        if block_size < 1024:
+            print("Error: Block size cannot be less than 1024 MB\n")
+            return
+        if total_size < 100:
+            print("Error: Total size cannot be less than 100 GB\n")
         
         terminal_command += f" --memory-block-size={block_size}M"
         terminal_command += f" --memory-total-size={total_size}G"
-    # I/O
-    # elfi test_mode == 2:
-    #   pass
     else:
         print("Error: No valid mode selected\n")
         return
     
-
     terminal_command += " run"
 
     if toggle_uptime == 'y':
         @getUptime
-        def programFunc(command):
+        def run_operation(command):
             os.system(command)
             return
         
-        programFunc(terminal_command)
+        run_operation(terminal_command)
     else:
         os.system(terminal_command)
 

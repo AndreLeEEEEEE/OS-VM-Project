@@ -3,9 +3,9 @@ Holds all benchmarks
 
 Required Benchmarks
 
-* [ ] - Disk I/O
-* [ ] - Bandwidth
-* [ ] - CPU utilization
-* [ ] - Memory usage
-* [ ] - Uptime
-* [ ] - Latency
+* [x] - Disk I/O
+* [ ] - Network Bandwidth
+* [x] - CPU utilization
+* [x] - Memory usage
+* [x] - Uptime
+* [x] - Latency

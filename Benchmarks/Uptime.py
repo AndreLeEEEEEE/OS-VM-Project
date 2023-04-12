@@ -46,7 +46,7 @@ def getUptime(process):
     return timer
 
 def main():
-    print("This benchmark is a decorator that can be run on top of another benchmark.\n")
+    print("This benchmark is a decorator that can be run on top of another benchmark.")
     print("Therefore, this benchmark cannot be run by itself as there would be nothing to monitor.\n")
     return
 
