@@ -9,7 +9,6 @@ import subprocess
 #set ip address and port
 host = '10.0.2.15'
 port = 80
-s
 #set data size
 data_size = 1024 * 1024 * 10  
 
