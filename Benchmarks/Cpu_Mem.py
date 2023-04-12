@@ -23,15 +23,17 @@ def make_array(size: int, mem_usage_before_array: float):
     array = [0] * size
     # array_size = sys.getsizeof(array)
 
-    # Print the final CPU and memory usage
-    print(f"Final CPU usage:{cpu_percent}%")
-
     # Print the increase in memory usage
     current_mem_usage = mem_usage.percent
     mem_increase = current_mem_usage - mem_usage_before_array
+    cpu_percent_final = psutil.cpu_percent()
+    cpu_percent_change = cpu_percent_final - cpu_percent
+    
+    print(f"Final CPU usage: {cpu_percent_final}%")
     print(f"Memory usage before array creation: {mem_usage_before_array}%")
     print(f"Memory usage after array creation: {current_mem_usage}%")
     print(f"Increase in memory usage: {mem_increase}%")
+    print(f"Change in CPU usage: {cpu_percent_change}%")
     
     # Update the memory usage before creating the array
     return current_mem_usage
