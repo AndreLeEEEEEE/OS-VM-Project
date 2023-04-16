@@ -56,11 +56,10 @@ def main():
         size = int(input("Enter the size/length of the array: "))
         if toggle_uptime == 'y':
             @getUptime
-            def run_operation():
-                mem_usage_before_array = make_array(size, mem_usage_before_array)
-                return
+            def run_operation(mem_usage_before_array):
+                return make_array(size, mem_usage_before_array)
             
-            run_operation()
+            run_operation(mem_usage_before_array)
         else:
             mem_usage_before_array = make_array(size, mem_usage_before_array)
 
