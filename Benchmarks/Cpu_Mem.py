@@ -59,7 +59,7 @@ def main():
             def run_operation(mem_usage_before_array):
                 return make_array(size, mem_usage_before_array)
             
-            run_operation(mem_usage_before_array)
+            mem_usage_before_array = run_operation(mem_usage_before_array)
         else:
             mem_usage_before_array = make_array(size, mem_usage_before_array)
 
