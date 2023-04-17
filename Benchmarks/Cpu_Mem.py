@@ -9,6 +9,9 @@ import psutil
 import sys
 from Uptime import getUptime
 
+# Define the initial value of mem_usage_before_array
+mem_usage_before_array = psutil.virtual_memory().percent
+
 def make_array(size: int, mem_usage_before_array: float):
     # Get CPU usage percentage
     cpu_percent = psutil.cpu_percent()
@@ -48,18 +51,17 @@ def main():
         print("Error: Invalid choice, ending program\n")
         return
 
-    # Define the initial value of mem_usage_before_array
-    mem_usage_before_array = psutil.virtual_memory().percent
-
     while True:
         # Take the size of the array as input from the user
         size = int(input("Enter the size/length of the array: "))
         if toggle_uptime == 'y':
             @getUptime
-            def run_operation(mem_usage_before_array):
-                return make_array(size, mem_usage_before_array)
+            def run_operation():
+                global mem_usage_before_array
+                mem_usage_before_array = make_array(size, mem_usage_before_array)
+                return
             
-            mem_usage_before_array = run_operation(mem_usage_before_array)
+            run_operation()
         else:
             mem_usage_before_array = make_array(size, mem_usage_before_array)
 
