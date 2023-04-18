@@ -23,14 +23,14 @@ def networkspeed(tests):
         #add download speed to array 
         dl.append(dl_speed)
         #add upload speed to array
-        ul.append(ul.speed)
+        ul.append(ul_speed)
     #calculate average download speed
     dl_speed_avg = sum(dl) / len(dl)
     #calculate average upload speed
     ul_speed_avg = sum(ul) / len(ul)
     #print download/upload
-    print("download speed mbps: " + dl_speed_avg)
-    print("upload speed mbps: " + ul_speed_avg)
+    print("download speed mbps: " + str(dl_speed_avg))
+    print("upload speed mbps: " + str(ul_speed_avg))
 
 
 if __name__ == "__main__":
