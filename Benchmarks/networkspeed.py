@@ -1,5 +1,6 @@
 import sys
 import speedtest
+from Uptime import getUptime
 
 def networkspeed(tests):
     #create empty arrays for speed values
@@ -32,9 +33,30 @@ def networkspeed(tests):
     print("download speed mbps: " + str(dl_speed_avg))
     print("upload speed mbps: " + str(ul_speed_avg))
 
+def main():
+    toggle_uptime = input("Record uptime? (y/n) ").lower()
+    if toggle_uptime == 'y':
+        print("Uptime will be recorded\n")
+    elif toggle_uptime == 'n':
+        print("Uptime will not be recorded\n")
+    else:
+        print("Error: Invalid choice, ending program\n")
+        return
+    
+    #number of tests
+    num_tests = int(input("Enter the number of tests: "))
+
+    if toggle_uptime == 'y':
+        @getUptime
+        def run_operation():
+            networkspeed(num_tests)
+            return
+        
+        run_operation()
+    else:
+        networkspeed(num_tests)
+
+    return
 
 if __name__ == "__main__":
-    #set number of runs 
-    tests = 3
-    #run speed test
-    networkspeed(tests)
+    main()
