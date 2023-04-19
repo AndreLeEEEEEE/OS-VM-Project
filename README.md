@@ -4,7 +4,7 @@ Holds all benchmarks
 Required Benchmarks
 
 * [x] - Disk I/O
-* [ ] - Network Bandwidth
+* [x] - Network Bandwidth
 * [x] - CPU utilization
 * [x] - Memory usage
 * [x] - Uptime
