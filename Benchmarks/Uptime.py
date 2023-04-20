@@ -35,7 +35,7 @@ def getUptime(process):
         uptime %= 3600
         minutes = math.floor(uptime / 60)
         # Obtain seconds
-        seconds = int(uptime % 60)
+        seconds = float(uptime % 60)
 
         print(f"Process uptime:")
         print(f"Hours: {hours}")
